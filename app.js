@@ -4,6 +4,7 @@ const cors = require('cors')
 
 const sensorRouter = require("./routes/sensorsRoutes")
 const forecastRouter = require("./routes/forecastRoutes")
+const userRouter = require("./routes/userRoutes")
 
 const app = express()
 
@@ -37,3 +38,4 @@ app.use(body_parser.json())
 
 app.use("/sensors/", sensorRouter);
 app.use("/forecast/", forecastRouter);
+app.use('/users/', userRouter)

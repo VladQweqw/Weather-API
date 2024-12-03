@@ -1,16 +1,14 @@
 const db = require("../db");
-
 const TABLE_NAME = "weatherreads"
 
 async function get_weatherReads(req, res) {    
-
     const sensor_id = req.params.id || -1;
     if(sensor_id == -1) {
         return res.status(400).json({
             error: "Invalid sensor ID"
         })
     }
-
+    
     function dynamicQueryWhere() {
         let query = `WHERE sensor_id="${sensor_id}" AND `
         for(let [key, val] of Object.entries(req.query)) {            
@@ -41,9 +39,9 @@ async function get_weatherReads(req, res) {
 
 async function post_weatherReads(req, res) {
     const body = req.body || [];
-    const errorArr = [];
+    const errorArr = [];    
 
-    if(body.sensor_id < 1 || isNaN(body.sensor_id)) {
+    if(req.params.id < 1 || isNaN(req.params.id)) {
         errorArr.push("Invalid sensor ID")
     }
     if(body.location_id < 1 || isNaN(body.location_id)) {
@@ -52,10 +50,10 @@ async function post_weatherReads(req, res) {
     if(!body.date) {
         errorArr.push("Invalid date")
     }
-    if(!body.reading_value) {
+    if(!body.value) {
         errorArr.push("Invalid reading value")
     }
-    if(!body.reading_type ) {
+    if(!body.sensor_type ) {
         errorArr.push(`Invalid reading type`)
     }
     
@@ -66,10 +64,9 @@ async function post_weatherReads(req, res) {
     }
 
     const query = `
-        INSERT INTO ${TABLE_NAME} (sensor_id, date, reading_value, reading_type, location_id) 
-        VALUES (${body.sensor_id}, "${body.date}", ${body.reading_value}, "${body.reading_type}", ${body.location_id})
-    `
-
+        INSERT INTO ${TABLE_NAME} (sensor_id, date, value, sensor_type, location_id) 
+        VALUES (${req.params.id}, "${body.date}", ${body.value}, "${body.sensor_type}", ${body.location_id})
+    `    
     try {
         await db.execute(query)
 
