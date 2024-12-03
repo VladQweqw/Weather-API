@@ -3,6 +3,7 @@ const body_parser = require('body-parser')
 const cors = require('cors')
 
 const sensorRouter = require("./routes/sensorsRoutes")
+const forecastRouter = require("./routes/forecastRoutes")
 
 const app = express()
 
@@ -35,3 +36,4 @@ app.use(express.json())
 app.use(body_parser.json())
 
 app.use("/sensors/", sensorRouter);
+app.use("/forecast/", forecastRouter);
