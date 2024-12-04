@@ -1,9 +1,13 @@
 const { Router } = require('express')
-const weatherReadsController = require('../controller/weatherController')
+const userController = require('../controller/userController')
 
 const router = Router()
 
-router.get('/:id/weather', weatherReadsController.get_weatherReads);
-router.post('/:id/weather', weatherReadsController.post_weatherReads);
+router.get('/:id', userController.get_user);
+router.get('/:id/favorites', userController.get_favorites);
+router.post('/:id/favorites', userController.post_favorite_place);
+
+router.post('/register', userController.register);
+router.post('/login', userController.login);
 
 module.exports = router

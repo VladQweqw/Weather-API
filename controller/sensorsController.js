@@ -5,7 +5,7 @@ const SENSOR_STATUS = ["OFFLINE", "ONLINE", "MAINTENANCE"];
 
 async function get_sensors(req, res) {
     const query = `
-    SELECT sensor_id, sensor_type, model_number, status, city, latitude, longitude, altitude, region
+    SELECT sensor_id, sensor_type, model_number, status, city, latitude, longitude, altitude, region, image_url
     FROM ${TABLE_NAME}
     INNER JOIN locations ON locations.location_id=sensors.location_id
     `
