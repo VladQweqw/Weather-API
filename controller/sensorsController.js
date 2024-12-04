@@ -4,11 +4,12 @@ const TABLE_NAME = "sensors"
 const SENSOR_STATUS = ["OFFLINE", "ONLINE", "MAINTENANCE"];
 
 async function get_sensors(req, res) {
-    const query = `
-    SELECT sensor_id, sensor_type, model_number, status, city, latitude, longitude, altitude, region, image_url
-    FROM ${TABLE_NAME}
-    INNER JOIN locations ON locations.location_id=sensors.location_id
-    `
+    // const query = `
+    // SELECT sensor_id, sensor_type, model_number, status, city, latitude, longitude, altitude, region, image_url
+    // FROM ${TABLE_NAME}
+    // INNER JOIN locations ON locations.location_id=sensors.location_id
+    // `
+    const query = `SELECT * FROM sensor_location_view` // am folosti view
 
     try {
         const [data] = await db.execute(query);
