@@ -66,13 +66,27 @@ async function post_weatherReads(req, res) {
     const query = `
         INSERT INTO ${TABLE_NAME} (sensor_id, date, value, sensor_type, location_id) 
         VALUES (${req.params.id}, "${body.date}", ${body.value}, "${body.sensor_type}", ${body.location_id})
-    `    
+        `    
     try {
         await db.execute(query)
+        const id_query = `
+        SELECT LAST_INSERT_ID() as id, weatherreads.date as date
+        FROM weatherreads`
 
-        return res.status(201).json({
-            message: "Weather entry added succesfully!"
-        });
+        try {
+            const [data] = await db.execute(id_query)
+            
+            return res.status(201).json({
+                message: "Weather entry added succesfully!",
+                id: data[0].id,
+                date: data[0].date,
+            });
+        
+        }catch(err) {
+            return res.status(400).json({
+                message: "Error retreiving weather ID"
+            });
+        }
     }catch(err) {
         return res.status(400).json({
             message: "Weather entry not added"
