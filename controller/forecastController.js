@@ -14,10 +14,7 @@ async function get_weekly_forecast(req, res) {
 
     try {
         const [data] = await db.execute(query);
-
-
            const newData = data.map(item => {
-            console.log(item);
             
             const date = new Date(item.forecast_date);
             const currentDate = new Date();
@@ -57,8 +54,6 @@ async function get_forecast_by(req, res) {
     ORDER BY forecast.forecast_date DESC
     LIMIT 6;
     `
-
-   
     
     try {
         const [data] = await db.execute(query);
