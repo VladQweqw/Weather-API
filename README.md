@@ -10,3 +10,9 @@
 This is a NodeJS api, being a RESTful API with CRUD functionalities made using JavaScript language + Express.js, it interact with an SQL database which holds the data from the sensor, data as Temperature and Rain probabilities. 
 
 The database has multiple tables that are being combined inside the NodeJS API, check the diagram here [dbdiagram](https://dbdiagram.io/d/674b237be9daa85aca37b991).
+
+
+### Other parts repositories
+* [Arduino UNO + Java code](https://github.com/VladQweqw/WeatherApp_Arduino-Java)
+* [React + Vite FrontEnd](https://github.com/VladQweqw/Weather-App)
+* [NodeJS Backend](https://github.com/VladQweqw/Weather-API)
