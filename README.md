@@ -1,6 +1,12 @@
-# Weather app project + Arduino UNO
+# Weather API
 
-This is a basic api functionality CRUD, but I'm getting the input data from an Arduino UNO with a real temperature and rain sensor.
+### This project is a part from the complete project Weather Reading from Sensor made by [Poienariu Vlad](https://www.linkedin.com/in/poienariu-vlad/).
+---
 
+![Express Node js](https://qualitapps.com/wp-content/uploads/2023/02/102.png)
 
-(dbdiagram)[https://dbdiagram.io/d/674b237be9daa85aca37b991]
+### API specifications & technologies
+
+This is a NodeJS api, being a RESTful API with CRUD functionalities made using JavaScript language + Express.js, it interact with an SQL database which holds the data from the sensor, data as Temperature and Rain probabilities. 
+
+The database has multiple tables that are being combined inside the NodeJS API, check the diagram here [dbdiagram](https://dbdiagram.io/d/674b237be9daa85aca37b991).
